@@ -32,20 +32,20 @@ all_commands = [  ### THIS LIST NEEDS TO KEPT UPDATED!
 ]
 
 ###### DATABASE CHECKS /START ######
-## detta används för att trigga automatisk respons på sad_words.
+## Used to trigger automatic reponses from the bot and more.
 if "responding" not in db.keys():
     db["responding"] = True
 ###### DATABASE CHECKS /END ######
 
 ###### FUNCTIONS /START ######
-## hämtar ett citat från hemsida, ändrar till json och sedan till string.
+## Extracts a quote from webpage, changes to json, creates a readable string and returns it.
 def get_quote():
     response = requests.get(lists.quotes_url)
     json_data = json.loads(response.text)
     quote = json_data[0]["q"] + " -" + json_data[0]["a"]
     return (quote)
 
-## lägger till nytt meddelande i databasen för encouragements.
+## Adds a new msg in the encouragements database.
 def update_encouragements(encouraging_message):
     if "encouragements" in db.keys():
         encouragements = db["encouragements"]
@@ -54,7 +54,7 @@ def update_encouragements(encouraging_message):
     else:
         db["encouragements"] = [encouraging_message]
 
-## tar bort objekt från encouragements databas.
+## Deletes an object from the encouragements database.
 def delete_encouragment(index):
     encouragements = db["encouragements"]
     if index < len(encouragements):
@@ -62,6 +62,7 @@ def delete_encouragment(index):
         del encouragements[index]
     db["encouragements"] = encouragements
 
+## Adds a fish to the ocean.
 def add_fish(new_fish):
     if "ocean" in db.keys():
         ocean = db["ocean"]
@@ -70,6 +71,7 @@ def add_fish(new_fish):
     else:
         db["ocean"] = ocean
 
+## Removes a fish from the ocean.
 def remove_fish(index):
     ocean = db["ocean"]
     if index < len(ocean):
@@ -93,22 +95,20 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-
-## om skribenten av meddelandet är boten så returnas det på en gång för att inte trigga fler kommandon
     if message.author == client.user: 
         return
 
-## genvägar / förkortningar
+## Shorts.
     msg = message.content
     reply = message.channel.send
 
-## skriver ut en lista på alla tillgängliga kommandon
+## Returns a list of all avaiable commands.
     if msg.startswith("$help"):
         list_of_commands = "\n".join(map(str, all_commands))
         help_reply = f"{message.author.mention} {list_of_commands}"
         await reply(help_reply)
 
-## prints all entries of all the specified databases.
+## Prints all entries of all the specified databases.
     if msg.startswith("$list_all_databases_entries"):
         inspo_value = db["encouragements"]
         fish_value = db["ocean"]
@@ -119,13 +119,13 @@ async def on_message(message):
 #    if msg.startswith("$delete_entire_database"):
 #        await reply("Database cleared.")
 
-## svarar med ett motiverande citat
+## Returns an inspiring quote.
     if msg.startswith("$inspire"):
         quote = get_quote()
         bot_reply = f"{message.author.mention} here is a message for you: \n {quote}"
         await reply(bot_reply)
 
-## togglar auto-reply på sad_words
+## Toggles auto-reply of sad_words.
     if msg.startswith("$toggle"):
         if db["responding"] == True:
             db["responding"] = False
@@ -134,7 +134,7 @@ async def on_message(message):
             db["responding"] = True
             await reply("Responding is now on.")
 
-## Kollar om toggle är av eller på för responding och om den är på ger feedback på sad_words
+## Checks if toggle is on/off, if on, gives auto-reply for sad_words and $fish.
     if db["responding"]:
         encourage_options = lists.starter_encouragements
         if "encouragements" in db.keys():
@@ -147,13 +147,13 @@ async def on_message(message):
         if msg.startswith("$fish"):
             await reply(random.choice(fish_options))
 
-## lägger till objekt i sad_words databas.
+## Adds object to encouragements database.
     if msg.startswith("$add-inspo"):
         encouraging_message = msg.split("$add-inspo ", 1)[1]
         update_encouragements(encouraging_message)
         await reply("New encouraging message added.")
 
-## tar bort objekt i sad_words databas.
+## Deletes object from encouragements database.
     if msg.startswith("$del-inspo"):
         encouragements = []
         remaining_entries = " "
@@ -166,7 +166,7 @@ async def on_message(message):
             update_encouragements_response = f"Removed entry as requested. Remaining entries are the following:\n{remaining_entries}"
         await reply(update_encouragements_response)
 
-## listar alla objekt i sad_words databas.
+## Returns a list of all items in encouragements database.
     if msg.startswith("$list-inspo"):
         list_to_show = " "
         encouragements = []
@@ -208,7 +208,7 @@ async def on_message(message):
         await reply(f"These are all the fish in the ocean:\n{list_to_show}")
 
 
-### Derp AF kommandon här: ###
+### Derp commands: ###
 
     if msg.startswith("$tolle"):
         await reply("Ta din skit och gå härifrån.")
