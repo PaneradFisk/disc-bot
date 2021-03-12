@@ -1,3 +1,24 @@
+all_commands = [  ### THIS LIST NEEDS TO KEPT UPDATED!
+    "here is a list of all commands: ",
+    "Note: There are a few hidden commands that are triggered by specific words :)",
+    " ",
+    "$help - Show this list.",
+    "$tolle - Testa så får du se.",
+    "$inspire - Get a random inspiring message.",
+    "$bestgifeu - The best gif eu!",
+    "$mys - Chill." 
+    "$gg <words to google> - Googles it for you.",
+    " ",
+    "$list-inspo - List of manually added inspiring messages.",
+    "$del-inspo <num> - Delete inspiring message at position <num>.",
+    "$add-inspo <msg> - Add inspiring message",
+    " ",
+    "$fish - Go fishing!",
+    "$list-fish - List of all fish in the ocean.",
+    "$add-fish <url> - Add a fish to the ocean.",
+    "$del-fish <num> - Remove fish at position <num> from the ocean.",
+]
+
 hello_words = [ 
   "hallå",
   "hej",
