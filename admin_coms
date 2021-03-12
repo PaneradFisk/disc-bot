@@ -1,0 +1,2 @@
+$toggle - Toggle automatic encouraging messages.
+$delete_entire_database <name of database> - Deletes all entries in a specific database.
