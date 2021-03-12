@@ -1,6 +1,0 @@
-Förslag till boten:
-
-En counter för samtliga personer på servern, plockar fram statistik på hur många posts som en användare har gjort.
-En databas som håller reda på alla ord som används på servern och spottar ut top 10 i en lista som användaren kan få fram.
-
-Skapa en counter för varje gång boten startar om +1
