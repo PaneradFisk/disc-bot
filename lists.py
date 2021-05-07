@@ -6,8 +6,11 @@ all_commands = [  ### THIS LIST NEEDS TO KEPT UPDATED!
     "$tolle - Testa så får du se.",
     "$inspire - Get a random inspiring message.",
     "$bestgifeu - The best gif eu!",
-    "$mys - Chill." 
+    "$mys - Chill.", 
+		"$wat - wat.",
     "$gg <words to google> - Googles it for you.",
+		"$bot - Boten Anna!!!",
+		"$timestartsnow - 30s timer"
     " ",
     "$list-inspo - List of manually added inspiring messages.",
     "$del-inspo <num> - Delete inspiring message at position <num>.",
@@ -25,6 +28,7 @@ hello_words = [
   "hejsan", 
   "tja", 
   "tjena",
+	"hello",
   ]
 
 table_flip = ["flip", "table"]
