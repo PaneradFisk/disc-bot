@@ -7,7 +7,6 @@ from replit import db
 from keep_alive import keep_alive
 import lists
 import time
-import json, requests
 
 client = discord.Client()
 #channel_id = os.environ['CHANNEL']
