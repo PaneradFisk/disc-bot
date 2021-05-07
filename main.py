@@ -227,6 +227,8 @@ async def on_message(message):
 		url = "https://www.youtube.com/watch?v=73tGe3JE5IU"
 		await reply(url)
 
+	if "flame" in msg:
+		await reply("Hey, flame is a pretty cool guy")
 
 
 ###### BOT RESPONSES /END ######
