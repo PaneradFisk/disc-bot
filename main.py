@@ -7,6 +7,7 @@ from replit import db
 from keep_alive import keep_alive
 import lists
 import time
+import json, requests
 
 client = discord.Client()
 #channel_id = os.environ['CHANNEL']
@@ -227,6 +228,14 @@ async def on_message(message):
 		url = "https://www.youtube.com/watch?v=73tGe3JE5IU"
 		await reply(url)
 
+	if msg.startswith("$advice"):
+		try:
+			ext = requests.get("https://api.adviceslip.com/advice")
+			advice = json.loads(ext.text)
+
+			await reply(advice['slip']['advice'])
+		except (requests.exceptions.RequestException, ValueError):
+			await reply("You are shit out of luck")
 
 
 ###### BOT RESPONSES /END ######
