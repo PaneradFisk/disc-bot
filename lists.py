@@ -10,7 +10,7 @@ all_commands = [  ### THIS LIST NEEDS TO KEPT UPDATED!
 		"$wat - wat.",
     "$gg <words to google> - Googles it for you.",
 		"$bot - Boten Anna!!!",
-		"$timestartsnow - 30s timer"
+		"$timestartsnow - 30s timer.",
     " ",
     "$list-inspo - List of manually added inspiring messages.",
     "$del-inspo <num> - Delete inspiring message at position <num>.",
