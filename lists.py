@@ -3,6 +3,7 @@ all_commands = [  ### THIS LIST NEEDS TO KEPT UPDATED!
     "Note: There are a few hidden commands that are triggered by specific words :)",
     " ",
     "$help - Show this list.",
+    "$advice - If you need help in life"
     "$tolle - Testa så får du se.",
     "$inspire - Get a random inspiring message.",
     "$bestgifeu - The best gif eu!",
