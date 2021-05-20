@@ -212,6 +212,10 @@ async def on_message(message):
 	if any(word in msg.lower() for word in lists.table_flip):
 		await reply(random.choice(lists.table_flip_response))
 
+## THIS IS BROKEN, sends "hettar till" no matter who writes in chat.
+#	if "flame" or "@FLAME_ID" in msg:
+#		await reply("hettar till")
+
 	if msg.startswith("$bestgifeu"):
 		with open('images/sausage.gif', 'rb') as f:
 			picture = discord.File(f)
@@ -247,6 +251,11 @@ async def on_message(message):
 			await reply(f"{message.author.mention} {advice['slip']['advice']}")
 		except (requests.exceptions.RequestException, ValueError):
 			await reply(f"{message.author.mention}, you are shit out of luck")
+
+
+### TESTING CODE HERE, IF IT WORKS; MOVE IT TO ABOVE THIS LINE ###
+
+
 
 
 ###### BOT RESPONSES /END ######
