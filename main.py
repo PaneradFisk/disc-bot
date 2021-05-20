@@ -6,10 +6,8 @@ import random
 from replit import db
 from keep_alive import keep_alive
 import lists
-# import time
 
 client = discord.Client()
-#channel_id = os.environ['CHANNEL']
 
 ###### DATABASE CHECKS /START ######
 ## Used to trigger automatic reponses from the bot and more.
@@ -62,27 +60,36 @@ def remove_fish(index):
 		del ocean[index]
 		db["ocean"] = ocean
 
+## Updates the start counter and returns the new value.
+def update_start_counter():
+	counting = db["counting"]
+	counter = counting + 1
+	db["counting"] = counter
+	return counter
+
+## Start-up check, output to console when starting bot.
+def start_check():
+	print("*" * 30)
+	print("-  Is responding?", db["responding"])
+	print("-  Has encouragement?", db["encouragements"])
+	print("-  Fish?", db["ocean"])
+	print("-  Startup counter:", db["counting"] + 1)
+	print("*" * 30)
+
+
 ###### FUNCTIONS /END ######
 ###### BOT RESPONSES ######
 
 @client.event
 async def on_ready():
-	#print("We have logged in as {0.user}".format(client))
-	#print(f"We have logged in as {client.user}")
-	print("Is responding?", db["responding"])
-	print("Has encouragement?", db["encouragements"])
-	print("Fish?", db["ocean"])
-	print("Startup counter:", db["counting"])
-	print("*********")
-	#start_response = "I have been put to sea", db["counting"], "times now! Ready to steer!"
+	start_check()
+	counter = update_start_counter()
 	channel = client.get_channel(818827445141504050)
-	await channel.send("I have been put to sea", db["counting"], "times now! Ready to steer!")
-	# await channel.send(lists.bot_starts)
+	await channel.send(f"I have been put to sea {counter} times now! Ready to steer!")
 
 
 @client.event
 async def on_message(message):
-
 	if message.author == client.user:
 		return
 
@@ -104,6 +111,7 @@ async def on_message(message):
 		print(f"***\n{inspo_value}")
 
 ## wipes the whole database.
+## !!DO NOT TOUCH!!
 #  if msg.startswith("$delete_entire_database"):
 #    await reply("Database cleared.")
 
@@ -229,7 +237,6 @@ async def on_message(message):
 		await reply(url)
 	
 	if msg.startswith("$timestartsnow"):
-		# t = 30
 		url = "https://www.youtube.com/watch?v=73tGe3JE5IU"
 		await reply(url)
 
@@ -237,10 +244,9 @@ async def on_message(message):
 		try:
 			ext = requests.get("https://api.adviceslip.com/advice")
 			advice = json.loads(ext.text)
-
-			await reply(advice['slip']['advice'])
+			await reply(f"{message.author.mention} {advice['slip']['advice']}")
 		except (requests.exceptions.RequestException, ValueError):
-			await reply("You are shit out of luck")
+			await reply(f"{message.author.mention}, you are shit out of luck")
 
 
 ###### BOT RESPONSES /END ######

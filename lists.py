@@ -3,8 +3,8 @@ all_commands = [  ### THIS LIST NEEDS TO KEPT UPDATED!
     "Note: There are a few hidden commands that are triggered by specific words :)",
     " ",
     "$help - Show this list.",
-    "$advice - If you need help in life"
     "$tolle - Testa så får du se.",
+		"$advice - If you need help in life",
     "$inspire - Get a random inspiring message.",
     "$bestgifeu - The best gif eu!",
     "$mys - Chill.", 
@@ -49,6 +49,5 @@ sad_words = ["sad", "depressed", "unhappy", "angry", "miserable"]
 starter_encouragements = ["Cheer up!", "Hang in there.", "You are a great person! // Anna"]
 
 quotes_url = "https://zenquotes.io/api/random"
-bot_starts = "I am put to sea, ready to steer!"
 boat_hello = "Skepp åhoj!"
 default_fish = ["https://mfsa1fr8m5prod.azurewebsites.net/globalassets/inriver/resources/407229_0.jpg?h=960&mode=max&quality=75&ref=38363&w=960", "https://friendofthesea.org/wp-content/uploads/foto-con-logo-dimensioni-corrette-2.jpg"]
