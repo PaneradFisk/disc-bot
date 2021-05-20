@@ -6,7 +6,7 @@ import random
 from replit import db
 from keep_alive import keep_alive
 import lists
-import time
+# import time
 
 client = discord.Client()
 #channel_id = os.environ['CHANNEL']
@@ -15,6 +15,9 @@ client = discord.Client()
 ## Used to trigger automatic reponses from the bot and more.
 if "responding" not in db.keys():
 	db["responding"] = True
+
+if "counting" not in db.keys():
+	db["counting"] = 0
 ###### DATABASE CHECKS /END ######
 
 ###### FUNCTIONS /START ######
@@ -66,12 +69,15 @@ def remove_fish(index):
 async def on_ready():
 	#print("We have logged in as {0.user}".format(client))
 	#print(f"We have logged in as {client.user}")
-	print(db["responding"])
-	print(db["encouragements"])
-	print(db["ocean"])
+	print("Is responding?", db["responding"])
+	print("Has encouragement?", db["encouragements"])
+	print("Fish?", db["ocean"])
+	print("Startup counter:", db["counting"])
 	print("*********")
+	#start_response = "I have been put to sea", db["counting"], "times now! Ready to steer!"
 	channel = client.get_channel(818827445141504050)
-	await channel.send(lists.bot_starts)
+	await channel.send("I have been put to sea", db["counting"], "times now! Ready to steer!")
+	# await channel.send(lists.bot_starts)
 
 
 @client.event
